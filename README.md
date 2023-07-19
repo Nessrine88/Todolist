@@ -62,7 +62,11 @@ git clone git@github.com:Nessrine88/Todolist.git
 
 ## Usage
 
-To run the project locally, open the `index.html` file in your web browser. You can also use a live server extension in your code editor for a better development experience.
+Run Dev Server (Port 9000)
+
+```
+  npm run dev
+```
 
 ## Run Tests
 
