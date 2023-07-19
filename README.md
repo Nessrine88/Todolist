@@ -16,6 +16,7 @@
   - [Run Tests](#run-tests)
   - [Deployment](#deployment)
 - [👥 Authors](#authors)
+- [🔭 Future Features](#future-features)
 - [Acknowledgements](#acknowledgements)
 - [🤝 Contributing](#contributing)
 - [⭐️ Show Your Support](#support)
@@ -36,6 +37,11 @@ The project is built using the following technologies and tools:
 - JavaScript
 - HtmlWebpackPlugin 
 - webpack-dev-server 
+
+
+### Key Feature <a name="key-features"></a>
+
+- Add todos dynamically using javascript
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
