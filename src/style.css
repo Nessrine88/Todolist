@@ -50,9 +50,6 @@ p {
 #icons {
   float: right;
   width: 20px;
-}
-
-#icons:hover {
   cursor: grab;
 }
 
@@ -70,7 +67,9 @@ p {
   margin: 50px 10px 20px 0;
 }
 
-
+input {
+  border: none;
+}
 
 .input-form input {
   width: 100%;
@@ -101,10 +100,3 @@ p {
 .overline {
   text-decoration: line-through;
 }
-
-input  {
-  border: none;
-
-  
-}
-
