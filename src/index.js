@@ -1,4 +1,3 @@
-// Array of tasks
 import './style.css';
 
 const tasks = [
@@ -7,27 +6,33 @@ const tasks = [
   { description: 'Task 3', completed: false, index: 3 },
 ];
 
-// Function to render tasks
 function renderTasks() {
   const todoList = document.getElementById('todoList');
-  const ul = document.createElement('ul');
+  const ul = document.querySelector('.list-container');
 
   tasks.sort((a, b) => a.index - b.index);
 
   tasks.forEach((task) => {
     const li = document.createElement('li');
-    li.innerHTML=`
+    li.innerHTML = `
       <p><input class='checkbox' type='checkbox'>${task.description}
-      <img id='icons' src='./images/options.png'>
+      <i class="fa-solid fa-ellipsis-vertical"></i>
       </p>
-    
-    `
+    `;
 
     ul.appendChild(li);
   });
 
   todoList.appendChild(ul);
+
+  const optionsIcons = document.querySelectorAll('.fa-ellipsis-vertical');
+  optionsIcons.forEach((icon) => {
+    icon.addEventListener('click', () => {
+      icon.classList.replace('fa-ellipsis-vertical', 'fa-trash-can');
+      const li = icon.parentElement.parentElement;
+      li.style.backgroundColor = '#FFF9C4';
+    });
+  });
 }
 
-// Call addTask to render initial tasks
 window.onload = renderTasks();
