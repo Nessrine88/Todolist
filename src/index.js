@@ -1,16 +1,15 @@
+// index.js
 import './style.css';
 
-const tasks = [
-  { description: 'Task 1', completed: false, index: 1 },
-  { description: 'Task 2', completed: true, index: 2 },
-  { description: 'Task 3', completed: false, index: 3 },
-];
+const tasks = []; // Start with an empty array
 
 function renderTasks() {
   const todoList = document.getElementById('todoList');
   const ul = document.querySelector('.list-container');
 
   tasks.sort((a, b) => a.index - b.index);
+
+  ul.innerHTML = '';
 
   tasks.forEach((task) => {
     const li = document.createElement('li');
@@ -19,20 +18,44 @@ function renderTasks() {
       <i class="fa-solid fa-ellipsis-vertical"></i>
       </p>
     `;
+    const optionIcon = li.querySelector('.fa-ellipsis-vertical');
+    
+    optionIcon.addEventListener('click', () => {
+      optionIcon.classList.replace('fa-ellipsis-vertical', 'fa-trash-can');
+      li.style.backgroundColor = '#FFF9C4';
+    
+    
+    });
 
+    const checkbox = li.querySelector('.checkbox');
+    checkbox.addEventListener('click', () => {
+      li.classList.toggle('overline'); });
+   
     ul.appendChild(li);
+    
+ 
   });
 
   todoList.appendChild(ul);
 
-  const optionsIcons = document.querySelectorAll('.fa-ellipsis-vertical');
-  optionsIcons.forEach((icon) => {
-    icon.addEventListener('click', () => {
-      icon.classList.replace('fa-ellipsis-vertical', 'fa-trash-can');
-      const li = icon.parentElement.parentElement;
-      li.style.backgroundColor = '#FFF9C4';
-    });
-  });
-}
+};
+
+const input = document.querySelector('.input-list');
+const form = document.querySelector('form');
+form.addEventListener('submit', (event) => {
+  event.preventDefault(); // Prevent form submission
+  const newTaskDescription = input.value.trim();
+  if (newTaskDescription !== '') {
+    const newTask = { description: newTaskDescription, completed: false, index: tasks.length + 1 };
+    tasks.push(newTask);
+    renderTasks();
+    input.value = '';
+  }
+ 
+
+
+
+});
+
 
 window.onload = renderTasks();
