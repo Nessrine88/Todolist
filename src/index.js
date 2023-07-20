@@ -1,7 +1,10 @@
-// index.js
 import './style.css';
 
-const tasks = []; // Start with an empty array
+let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+function saveTasksToLocalStorage() {
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+}
 
 function renderTasks() {
   const todoList = document.getElementById('todoList');
@@ -19,26 +22,24 @@ function renderTasks() {
       </p>
     `;
     const optionIcon = li.querySelector('.fa-ellipsis-vertical');
-    
+
     optionIcon.addEventListener('click', () => {
       optionIcon.classList.replace('fa-ellipsis-vertical', 'fa-trash-can');
       li.style.backgroundColor = '#FFF9C4';
-    
-    
     });
 
     const checkbox = li.querySelector('.checkbox');
     checkbox.addEventListener('click', () => {
-      li.classList.toggle('overline'); });
-   
+      li.classList.toggle('overline');
+      task.completed = checkbox.checked;
+      saveTasksToLocalStorage();
+    });
+
     ul.appendChild(li);
-    
- 
   });
 
   todoList.appendChild(ul);
-
-};
+}
 
 const input = document.querySelector('.input-list');
 const form = document.querySelector('form');
@@ -48,14 +49,17 @@ form.addEventListener('submit', (event) => {
   if (newTaskDescription !== '') {
     const newTask = { description: newTaskDescription, completed: false, index: tasks.length + 1 };
     tasks.push(newTask);
+    saveTasksToLocalStorage();
     renderTasks();
     input.value = '';
   }
- 
-
-
-
 });
 
+const xbtn = document.getElementById('xbtn');
+xbtn.addEventListener('click', () => {
+  tasks = tasks.filter((task) => !task.completed);
+  saveTasksToLocalStorage();
+  renderTasks();
+});
 
 window.onload = renderTasks();

@@ -103,3 +103,8 @@ p {
 .overline {
   text-decoration: line-through;
 }
+
+.edit-input {
+  border: none;
+  padding: 10px;
+}
