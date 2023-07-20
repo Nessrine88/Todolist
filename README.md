@@ -16,6 +16,7 @@
   - [Run Tests](#run-tests)
   - [Deployment](#deployment)
 - [👥 Authors](#authors)
+- [🔭 Future Features](#future-features)
 - [Acknowledgements](#acknowledgements)
 - [🤝 Contributing](#contributing)
 - [⭐️ Show Your Support](#support)
@@ -36,6 +37,11 @@ The project is built using the following technologies and tools:
 - JavaScript
 - HtmlWebpackPlugin 
 - webpack-dev-server 
+
+
+### Key Feature <a name="key-features"></a>
+
+- Add todos dynamically using javascript
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -62,7 +68,11 @@ git clone git@github.com:Nessrine88/Todolist.git
 
 ## Usage
 
-To run the project locally, open the `index.html` file in your web browser. You can also use a live server extension in your code editor for a better development experience.
+Run Dev Server (Port 9000)
+
+```
+  npm run dev
+```
 
 ## Run Tests
 
