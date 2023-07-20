@@ -16,7 +16,7 @@ body {
 }
 
 li {
-  padding: 10px;
+  padding: 20px;
   border: 1px solid rgba(168, 127, 127, 0.41);
   box-sizing: border-box;
 }
@@ -70,9 +70,7 @@ p {
   margin: 50px 10px 20px 0;
 }
 
-.fa-ellipsis-vertical:hover {
-  cursor: crosshair;
-}
+
 
 .input-form input {
   width: 100%;
@@ -104,7 +102,9 @@ p {
   text-decoration: line-through;
 }
 
-.edit-input {
+input  {
   border: none;
-  padding: 10px;
+
+  
 }
+

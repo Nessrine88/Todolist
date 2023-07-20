@@ -16,6 +16,7 @@ function renderTasks() {
 
   tasks.forEach((task) => {
     const li = document.createElement('li');
+   
     li.innerHTML = `
       <p><input class='checkbox' type='checkbox'>${task.description}
       <i class="fa-solid fa-ellipsis-vertical"></i>
@@ -26,8 +27,17 @@ function renderTasks() {
     optionIcon.addEventListener('click', () => {
       optionIcon.classList.replace('fa-ellipsis-vertical', 'fa-trash-can');
       li.style.backgroundColor = '#FFF9C4';
+      const trashIcon = li.querySelector('.fa-trash-can');
+      trashIcon.addEventListener('click', () => {
+        ul.removeChild(li);
+        tasks = tasks.filter((item) => item.index !== task.index);
+        saveTasksToLocalStorage();
+      });
+      
     });
+ 
 
+   
     const checkbox = li.querySelector('.checkbox');
     checkbox.addEventListener('click', () => {
       li.classList.toggle('overline');
@@ -35,25 +45,34 @@ function renderTasks() {
       saveTasksToLocalStorage();
     });
 
+    
+  
+
     ul.appendChild(li);
   });
 
   todoList.appendChild(ul);
 }
 
-const input = document.querySelector('.input-list');
-const form = document.querySelector('form');
-form.addEventListener('submit', (event) => {
-  event.preventDefault(); // Prevent form submission
-  const newTaskDescription = input.value.trim();
+function addNewTask(description) {
+  const newTaskDescription = description.trim();
   if (newTaskDescription !== '') {
     const newTask = { description: newTaskDescription, completed: false, index: tasks.length + 1 };
     tasks.push(newTask);
     saveTasksToLocalStorage();
     renderTasks();
-    input.value = '';
   }
+}
+
+const input = document.querySelector('.input-list');
+const form = document.querySelector('form');
+form.addEventListener('submit', (event) => {
+  event.preventDefault(); // Prevent form submission
+  addNewTask(input.value);
+  input.value = '';
 });
+
+
 
 const xbtn = document.getElementById('xbtn');
 xbtn.addEventListener('click', () => {
@@ -61,5 +80,6 @@ xbtn.addEventListener('click', () => {
   saveTasksToLocalStorage();
   renderTasks();
 });
+
 
 window.onload = renderTasks();
