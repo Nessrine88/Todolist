@@ -16,7 +16,12 @@ function renderTasks() {
 
   tasks.forEach((task) => {
     const li = document.createElement('li');
-    li.textContent = task.description;
+    li.innerHTML=`
+      <p><input class='checkbox' type='checkbox'>${task.description}
+      <img id='icons' src='./images/options.png'>
+      </p>
+    
+    `
 
     ul.appendChild(li);
   });

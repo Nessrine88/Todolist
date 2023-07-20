@@ -2,21 +2,42 @@
 * {
   text-decoration: none;
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
-
 li {
-  background-color: #f9f9f9;
   padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  margin-bottom: 20px;
-}
+   margin:0 30px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  
+  }
 
-#todo-list li.completed {
-  color: #888;
-}
-
-h1 {
-  font-family: 'intel', sans-serif;
-  text-align: center;
-}
+  p {
+    font-family: 'intel', sans-serif;
+    font-weight: 300;
+  }
+  
+  .checkbox {
+    margin-right: 20px;
+  }
+  #todoList {
+    border: 1px solid #ddd;
+  
+  }
+  .header {
+    font-size: 24px;
+    margin: 30px 0 10px 40px;
+  }
+  #icons{
+  float: right;
+  width: 20px;
+  }
+  #icons:hover {
+    cursor:move;
+  }
+  .headerIcon {
+    float: right;
+    width: 20px;
+    margin: 30px 40px 5px 0;
+  }
