@@ -15,20 +15,20 @@ function renderTasks() {
 
   ul.innerHTML = '';
 
-  tasks.forEach((task) => {
+  tasks.forEach((task, index) => {
     const li = document.createElement('li');
 
     li.innerHTML = `
       <p>
         <input class='checkbox' type='checkbox' ${task.completed ? 'checked' : ''}>
-        ${task.description}
+        ${index + 1} ${task.description}
         <i class="fa-solid fa-ellipsis-vertical"></i>
       </p>
     `;
 
     const optionIcon = li.querySelector('.fa-ellipsis-vertical');
     optionIcon.addEventListener('click', (event) => {
-      event.stopPropagation(); // Prevent the event from propagating to the li element
+      event.stopPropagation();
       optionIcon.classList.replace('fa-ellipsis-vertical', 'fa-trash-can');
       li.style.backgroundColor = '#FFF9C4';
       const trashIcon = li.querySelector('.fa-trash-can');
@@ -36,12 +36,13 @@ function renderTasks() {
         ul.removeChild(li);
         tasks = tasks.filter((item) => item.index !== task.index);
         saveTasksToLocalStorage();
+        renderTasks();
       });
     });
 
     const checkbox = li.querySelector('.checkbox');
     checkbox.addEventListener('click', (event) => {
-      event.stopPropagation(); // Prevent the event from propagating to the li element
+      event.stopPropagation();
       li.classList.toggle('overline');
       task.completed = checkbox.checked;
       saveTasksToLocalStorage();
@@ -61,16 +62,13 @@ function editPost(li, task) {
   const p = li.querySelector('p');
   const currentDescription = task.description;
 
-  // Create an input field with the current description
   const inputField = document.createElement('input');
   inputField.type = 'text';
   inputField.value = currentDescription;
 
-  // Replace the paragraph with the input field
   p.replaceWith(inputField);
   inputField.focus();
 
-  // Save the edited task when 'Enter' key is pressed
   inputField.addEventListener('keypress', (event) => {
     if (event.key === 'Enter') {
       task.description = inputField.value.trim();
@@ -83,7 +81,7 @@ function editPost(li, task) {
 function addNewTask(description) {
   const newTaskDescription = description.trim();
   if (newTaskDescription !== '') {
-    const newTask = { description: newTaskDescription, completed: false, index: tasks.length + 1 };
+    const newTask = { description: newTaskDescription, completed: false, index: tasks.length };
     tasks.push(newTask);
     saveTasksToLocalStorage();
     renderTasks();
@@ -93,7 +91,7 @@ function addNewTask(description) {
 const input = document.querySelector('.input-list');
 const form = document.querySelector('form');
 form.addEventListener('submit', (event) => {
-  event.preventDefault(); // Prevent form submission
+  event.preventDefault();
   addNewTask(input.value);
   input.value = '';
 });
@@ -101,6 +99,9 @@ form.addEventListener('submit', (event) => {
 const xbtn = document.getElementById('xbtn');
 xbtn.addEventListener('click', () => {
   tasks = tasks.filter((task) => !task.completed);
+  tasks.forEach((task, index) => {
+    task.index = index;
+  });
   saveTasksToLocalStorage();
   renderTasks();
 });
