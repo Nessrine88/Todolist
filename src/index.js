@@ -15,13 +15,13 @@ function renderTasks() {
 
   ul.innerHTML = '';
 
-  tasks.forEach((task, index) => {
+  tasks.forEach((task) => {
     const li = document.createElement('li');
 
     li.innerHTML = `
       <p>
         <input class='checkbox' type='checkbox' ${task.completed ? 'checked' : ''}>
-        ${index + 1} ${task.description}
+         ${task.description}
         <i class="fa-solid fa-ellipsis-vertical"></i>
       </p>
     `;
@@ -35,6 +35,9 @@ function renderTasks() {
       trashIcon.addEventListener('click', () => {
         ul.removeChild(li);
         tasks = tasks.filter((item) => item.index !== task.index);
+        tasks.forEach((task, index) => {
+          task.index = index + 1;
+        });
         saveTasksToLocalStorage();
         renderTasks();
       });
@@ -76,12 +79,18 @@ function editPost(li, task) {
       renderTasks();
     }
   });
+
+  inputField.addEventListener('blur', () => {
+    task.description = inputField.value.trim();
+    saveTasksToLocalStorage();
+    renderTasks();
+  });
 }
 
 function addNewTask(description) {
   const newTaskDescription = description.trim();
   if (newTaskDescription !== '') {
-    const newTask = { description: newTaskDescription, completed: false, index: tasks.length };
+    const newTask = { description: newTaskDescription, completed: false, index: tasks.length + 1 };
     tasks.push(newTask);
     saveTasksToLocalStorage();
     renderTasks();

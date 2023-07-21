@@ -100,3 +100,11 @@ input {
 .overline {
   text-decoration: line-through;
 }
+
+.fa-trash-can {
+  cursor: pointer;
+}
+
+.fa-ellipsis-vertical {
+  cursor: move;
+}
