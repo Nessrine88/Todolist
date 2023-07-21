@@ -16,7 +16,7 @@ body {
 }
 
 li {
-  padding: 10px;
+  padding: 20px;
   border: 1px solid rgba(168, 127, 127, 0.41);
   box-sizing: border-box;
 }
@@ -50,9 +50,6 @@ p {
 #icons {
   float: right;
   width: 20px;
-}
-
-#icons:hover {
   cursor: grab;
 }
 
@@ -70,8 +67,8 @@ p {
   margin: 50px 10px 20px 0;
 }
 
-.fa-ellipsis-vertical:hover {
-  cursor: crosshair;
+input {
+  border: none;
 }
 
 .input-form input {
@@ -98,4 +95,16 @@ p {
   box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.2);
   padding: 20px 20px;
   font-size: 20px;
+}
+
+.overline {
+  text-decoration: line-through;
+}
+
+.fa-trash-can {
+  cursor: pointer;
+}
+
+.fa-ellipsis-vertical {
+  cursor: move;
 }
