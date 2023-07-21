@@ -1,4 +1,4 @@
-// index.js
+
 import './style.css';
 
 let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
@@ -104,12 +104,11 @@ form.addEventListener('submit', (event) => {
   addNewTask(input.value);
   input.value = '';
 });
-
 const xbtn = document.getElementById('xbtn');
 xbtn.addEventListener('click', () => {
   tasks = tasks.filter((task) => !task.completed);
   tasks.forEach((task, index) => {
-    task.index = index;
+    task.index = index +1;
   });
   saveTasksToLocalStorage();
   renderTasks();
