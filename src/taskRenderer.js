@@ -1,4 +1,4 @@
-import { clearCompletedTasks,getTasks, editPost, saveTasksToLocalStorage } from './taskUtils';
+import { getTasks, editPost, saveTasksToLocalStorage } from './taskUtils.js';
 
 export const renderTasks = () => {
   let tasks = getTasks();
@@ -32,10 +32,13 @@ export const renderTasks = () => {
 
     trashIcon.addEventListener('click', () => {
       tasks = tasks.filter((item) => item.index !== task.index);
+
       tasks.forEach((task, index) => {
         task.index = index + 1;
       });
-      saveTasksToLocalStorage();
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+
+      // saveTasksToLocalStorage();
       ul.removeChild(li);
     });
 

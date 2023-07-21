@@ -1,14 +1,13 @@
 // taskUtils.js
 
+import { renderTasks } from './taskRenderer.js';
+
 let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-import { renderTasks } from "./taskRenderer";
 export const saveTasksToLocalStorage = () => {
   localStorage.setItem('tasks', JSON.stringify(tasks));
 };
 
-export const getTasks = () => {
-  return tasks;
-};
+export const getTasks = () => tasks;
 
 export const editPost = (li, task) => {
   const p = li.querySelector('p');
@@ -40,16 +39,18 @@ export const addNewTask = (description) => {
   const newTaskDescription = description.trim();
   if (newTaskDescription !== '') {
     const newTask = { description: newTaskDescription, completed: false, index: tasks.length + 1 };
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+
     tasks.push(newTask);
     saveTasksToLocalStorage();
     renderTasks();
   }
 };
 
-export let clearCompletedTasks = () => {
+export const clearCompletedTasks = () => {
   tasks = tasks.filter((task) => !task.completed);
   tasks.forEach((task, index) => {
-    task.index = index + 1; 
+    task.index = index + 1;
   });
   saveTasksToLocalStorage();
 };
