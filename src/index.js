@@ -1,23 +1,21 @@
-// app.js
-
 import './style.css';
-import { addNewTask, clearCompletedTasks } from './taskUtils.js';
-import { renderTasks } from './taskRenderer.js';
+import TaskManager from './taskManager.js';
 
-const input = document.querySelector('.input-list');
+const taskManager = new TaskManager();
+
 const form = document.querySelector('form');
 form.addEventListener('submit', (event) => {
   event.preventDefault();
-  addNewTask(input.value);
+  const input = document.querySelector('.input-list');
+  taskManager.addNewTask(input.value);
   input.value = '';
 });
 
 const xbtn = document.getElementById('xbtn');
 xbtn.addEventListener('click', () => {
-  clearCompletedTasks();
-  renderTasks();
+  taskManager.deleteCompletedTasks();
 });
 
 window.onload = () => {
-  renderTasks();
+  taskManager.renderTasks();
 };
